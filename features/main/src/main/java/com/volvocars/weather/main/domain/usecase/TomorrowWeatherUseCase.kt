@@ -6,6 +6,7 @@ import com.volvocars.weather.base.utils.date.DateFormat.Companion.formatJustDate
 import com.volvocars.weather.base.utils.date.DateFormat.Companion.formatZIndex
 import com.volvocars.weather.main.data.entity.ConsolidatedWeatherEntity
 import com.volvocars.weather.main.domain.WeatherRepository
+import com.volvocars.weather.main.domain.mapper.mapToModel
 import com.volvocars.weather.main.domain.model.ConsolidatedWeatherModel
 import com.volvocars.weather.repository.ResultModel
 import com.volvocars.weather.repository.map
@@ -21,7 +22,7 @@ class TomorrowWeatherUseCase(
             val tomorrowWeather = getTomorrowWeather(Calendar.getInstance(), it.consolidatedWeather)
 
             tomorrowWeather?.let {
-                weatherEntityToModel(it)
+                it.mapToModel()
             } ?: kotlin.run {
                 null
             }
@@ -61,30 +62,6 @@ class TomorrowWeatherUseCase(
             null
         }
 
-    }
-
-    private fun weatherEntityToModel(weather: ConsolidatedWeatherEntity): ConsolidatedWeatherModel {
-        return ConsolidatedWeatherModel(
-            id = weather.id,
-            weatherStateName = weather.weatherStateName,
-            weatherStateAbbr = weather.weatherStateAbbr,
-            windDirectionCompass = weather.windDirectionCompass,
-            created = weather.created?.let { dateString ->
-                DateConvertorUtils.convertStringToCalendar(dateString, formatZIndex)
-            },
-            applicableDate = weather.applicableDate?.let { dateString ->
-                DateConvertorUtils.convertStringToCalendar(dateString, formatJustDate)
-            },
-            minTemp = weather.minTemp,
-            maxTemp = weather.maxTemp,
-            theTemp = weather.theTemp,
-            windSpeed = weather.windSpeed,
-            windDirection = weather.windDirection,
-            airPressure = weather.airPressure,
-            humidity = weather.humidity,
-            visibility = weather.visibility,
-            predictability = weather.predictability
-        )
     }
 
 }

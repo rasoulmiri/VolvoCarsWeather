@@ -15,12 +15,12 @@ class TomorrowWeatherCitiesUseCase(
     override suspend fun executeAsync(rq: TomorrowWeatherCitiesRequestModel): Flow<TomorrowWeatherCitiesResponseModel?> {
         return flow {
             rq.cities.forEach {
-                emit(getComicFromComicByNumberUseCase(it))
+                emit(getTomorrowWeatherOfCityUseCase(it))
             }
         }
     }
 
-    private suspend fun getComicFromComicByNumberUseCase(
+    private suspend fun getTomorrowWeatherOfCityUseCase(
         city:CityModel
     ): TomorrowWeatherCitiesResponseModel? {
         return when (val result = tomorrowWeatherUseCase.executeAsync(city.woeid)) {
@@ -31,9 +31,7 @@ class TomorrowWeatherCitiesUseCase(
             is ResultModel.Error -> {
                 if (retryForError < 3) {
                     retryForError += 1
-                    getComicFromComicByNumberUseCase(
-                        city = city
-                    )
+                    getTomorrowWeatherOfCityUseCase(city = city)
                 } else {
                     null
                 }
