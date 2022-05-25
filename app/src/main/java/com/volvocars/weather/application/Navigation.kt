@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.volvocars.weather.main.MainScreen
+import com.volvocars.weather.main.presenter.MainScreen
 
 @Composable
 fun Navigation() {
