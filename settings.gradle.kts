@@ -29,5 +29,6 @@ include(
     ":core:theme",
 
     /* Feature */
-    ":features:main"
+    ":features:main",
+    ":features:details"
 )
