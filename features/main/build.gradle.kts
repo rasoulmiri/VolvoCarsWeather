@@ -1,4 +1,5 @@
 import com.volvocars.weather.extenstion.implementationGroup
+import com.volvocars.weather.extenstion.testImplementationGroup
 
 plugins {
     id(Plugins.volvocarsLibraryPlugin)
@@ -14,7 +15,10 @@ dependencies {
     implementationGroup(DependenciesManager.koin.all)
     implementationGroup(DependenciesManager.coroutines.all)
     implementationGroup(DependenciesManager.retrofit.all)
-    implementationGroup(DependenciesManager.androidX.navigation.all)
-    implementationGroup(DependenciesManager.androidX.general.all)
+
+    testImplementationGroup(DependenciesManager.coroutines.test)
+    testImplementationGroup(DependenciesManager.jUnit.all)
+    testImplementationGroup(DependenciesManager.androidX.test.all)
+    testImplementationGroup(DependenciesManager.mockk.all)
 
 }

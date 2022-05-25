@@ -14,7 +14,7 @@ fun DependencyHandlerScope.debugImplementationGroup(list: Array<String>) {
     }
 }
 
-fun DependencyHandlerScope.testImplementationGroup(vararg list: String) {
+fun DependencyHandlerScope.testImplementationGroup(list: Array<String>) {
     list.map {
         "testImplementation"(it)
     }

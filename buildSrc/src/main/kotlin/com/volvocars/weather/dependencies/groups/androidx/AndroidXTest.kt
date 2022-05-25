@@ -19,7 +19,7 @@ class AndroidXTest {
     }
 
     val all = arrayOf(
-        Dependencies.core,
+//        Dependencies.core,
         Dependencies.rules,
         Dependencies.runner,
         Dependencies.archCore
