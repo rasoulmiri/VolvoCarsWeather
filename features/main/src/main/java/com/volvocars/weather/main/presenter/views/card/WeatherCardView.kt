@@ -1,4 +1,4 @@
-package com.volvocars.weather.main.presenter.views
+package com.volvocars.weather.main.presenter.views.card
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
@@ -10,10 +10,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.volvocars.weather.main.R
-import com.volvocars.weather.main.presenter.WeatherCardModel
-import com.volvocars.weather.main.presenter.WeatherCardState
+import com.volvocars.weather.main.presenter.views.card.WeatherCardModel
+import com.volvocars.weather.main.presenter.views.card.WeatherCardState
 import com.volvocars.weather.theme.VolvoCarsTemplateTheme
-
 
 @Composable
 fun WeatherCard(itemData: WeatherCardModel) {
@@ -71,7 +70,7 @@ fun WeatherCard(itemData: WeatherCardModel) {
 @Composable
 fun PlanetCardPreview() {
     VolvoCarsTemplateTheme {
-//        WeatherCard()
+        WeatherCard(  WeatherCardModel("Berlin", 1001, WeatherCardState.Loading, null))
     }
 }
 
@@ -79,16 +78,16 @@ fun PlanetCardPreview() {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true, name = "Dark mode")
 @Composable
 fun PlanetCard1Preview() {
-//    VolvoCarsTemplateTheme {
-//        WeatherCard(plants[1].name, plants[1].description, plants[1].imageRes)
-//    }
+    VolvoCarsTemplateTheme {
+        WeatherCard(  WeatherCardModel("Berlin", 1001, WeatherCardState.Loading, null))
+    }
 }
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, showBackground = true, name = "Light mode")
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true, name = "Dark mode")
 @Composable
 fun PlanetCard2Preview() {
-//    VolvoCarsTemplateTheme {
-//        WeatherCard(plants[2].name, plants[2].description, plants[2].imageRes)
-//    }
+    VolvoCarsTemplateTheme {
+        WeatherCard(  WeatherCardModel("Berlin", 1001, WeatherCardState.Loading, null))
+    }
 }

@@ -14,7 +14,7 @@ class DateConvertorUtils {
                 val calendar: Calendar = Calendar.getInstance()
                 val dateFormat = SimpleDateFormat(format)
                 dateFormat.parse(time)?.let {
-                    calendar.time
+                    calendar.time = it
                     calendar
                 } ?: kotlin.run {
                     null

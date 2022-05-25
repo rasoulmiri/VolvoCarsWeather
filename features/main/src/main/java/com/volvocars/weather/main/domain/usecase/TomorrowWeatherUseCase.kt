@@ -4,42 +4,24 @@ import com.volvocars.weather.base.usecase.AsyncSuspendUseCase
 import com.volvocars.weather.base.utils.date.DateConvertorUtils
 import com.volvocars.weather.base.utils.date.DateFormat.Companion.formatJustDate
 import com.volvocars.weather.base.utils.date.DateFormat.Companion.formatZIndex
+import com.volvocars.weather.main.data.entity.ConsolidatedWeatherEntity
 import com.volvocars.weather.main.domain.WeatherRepository
 import com.volvocars.weather.main.domain.model.ConsolidatedWeatherModel
 import com.volvocars.weather.repository.ResultModel
 import com.volvocars.weather.repository.map
+import java.util.*
 
 class TomorrowWeatherUseCase(
     private val repository: WeatherRepository,
 ) : AsyncSuspendUseCase<Long?, ResultModel<ConsolidatedWeatherModel?>> {
 
     override suspend fun executeAsync(rq: Long?): ResultModel<ConsolidatedWeatherModel?> {
-        return repository.getWeatherCity(rq?:0).map {
+        return repository.getWeatherCity(rq ?: 0).map {
 
-            val tomorrowWeather = it.consolidatedWeather?.getOrNull(0)
+            val tomorrowWeather = getTomorrowWeather(Calendar.getInstance(), it.consolidatedWeather)
 
             tomorrowWeather?.let {
-                ConsolidatedWeatherModel(
-                    id = tomorrowWeather.id ,
-                    weatherStateName = tomorrowWeather.weatherStateName ,
-                    weatherStateAbbr = tomorrowWeather.weatherStateAbbr ,
-                    windDirectionCompass = tomorrowWeather.windDirectionCompass ,
-                    created = tomorrowWeather.created?.let { dateString ->
-                        DateConvertorUtils.convertStringToCalendar(dateString, formatZIndex)
-                    },
-                    applicableDate = tomorrowWeather.applicableDate?.let { dateString ->
-                        DateConvertorUtils.convertStringToCalendar(dateString, formatJustDate)
-                    },
-                    minTemp = tomorrowWeather.minTemp ,
-                    maxTemp = tomorrowWeather.maxTemp ,
-                    theTemp = tomorrowWeather.theTemp ,
-                    windSpeed = tomorrowWeather.windSpeed ,
-                    windDirection = tomorrowWeather.windDirection ,
-                    airPressure = tomorrowWeather.airPressure ,
-                    humidity = tomorrowWeather.humidity ,
-                    visibility = tomorrowWeather.visibility ,
-                    predictability = tomorrowWeather.predictability 
-                )
+                weatherEntityToModel(it)
             } ?: kotlin.run {
                 null
             }
@@ -47,5 +29,62 @@ class TomorrowWeatherUseCase(
         }
     }
 
+    fun getTomorrowWeather(
+        today: Calendar,
+        daysWeather: List<ConsolidatedWeatherEntity>?,
+    ): ConsolidatedWeatherEntity? {
+        return if (daysWeather?.isNotEmpty() == true) {
+
+            var tomorrowWeather: ConsolidatedWeatherEntity? = null
+            val tomorrow = with(today) {
+                this.add(Calendar.DATE, 1)
+                this
+            }
+
+            daysWeather.forEach {weather ->
+
+                val day = weather.applicableDate?.let { dateString ->
+                    DateConvertorUtils.convertStringToCalendar(dateString, formatJustDate)
+                }?: return@forEach
+
+                if (tomorrow.get(Calendar.YEAR) == day.get(Calendar.YEAR) &&
+                    tomorrow.get(Calendar.DATE) == day.get(Calendar.DATE) &&
+                    tomorrow.get(Calendar.DAY_OF_MONTH) == day.get(Calendar.DAY_OF_MONTH) &&
+                    tomorrow.get(Calendar.DAY_OF_YEAR) == day.get(Calendar.DAY_OF_YEAR)
+                ) {
+                    tomorrowWeather = weather
+                    return@forEach
+                }
+            }
+            tomorrowWeather
+        } else {
+            null
+        }
+
+    }
+
+    private fun weatherEntityToModel(weather: ConsolidatedWeatherEntity): ConsolidatedWeatherModel {
+        return ConsolidatedWeatherModel(
+            id = weather.id,
+            weatherStateName = weather.weatherStateName,
+            weatherStateAbbr = weather.weatherStateAbbr,
+            windDirectionCompass = weather.windDirectionCompass,
+            created = weather.created?.let { dateString ->
+                DateConvertorUtils.convertStringToCalendar(dateString, formatZIndex)
+            },
+            applicableDate = weather.applicableDate?.let { dateString ->
+                DateConvertorUtils.convertStringToCalendar(dateString, formatJustDate)
+            },
+            minTemp = weather.minTemp,
+            maxTemp = weather.maxTemp,
+            theTemp = weather.theTemp,
+            windSpeed = weather.windSpeed,
+            windDirection = weather.windDirection,
+            airPressure = weather.airPressure,
+            humidity = weather.humidity,
+            visibility = weather.visibility,
+            predictability = weather.predictability
+        )
+    }
 
 }
