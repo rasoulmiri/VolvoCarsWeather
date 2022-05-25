@@ -1,19 +1,13 @@
 package com.volvocars.weather.main.data.datasource
 
 import com.volvocars.weather.base.utils.DataProviderFromResourceFolderUtils
-import com.volvocars.weather.main.data.api.WeatherApiService
-import com.volvocars.weather.main.data.entity.CityWeatherResponse
+import com.volvocars.weather.main.data.entity.CityWeatherResponseEntity
 import com.volvocars.weather.repository.ResultModel
-import com.volvocars.weather.repository.awaitResult
 
-class WeatherMockDataSourceImpl(
-    private val apiService: WeatherApiService,
-) : WeatherDataSource {
+class WeatherMockDataSourceImpl() : WeatherDataSource {
 
-    override suspend fun getWeatherCity(woeid: Long): ResultModel<CityWeatherResponse> {
-        return apiService.getWeatherCity(woeid = woeid).awaitResult {
-            WeatherMock.provideSuccessfulResponse()
-        }
+    override suspend fun getWeatherCity(woeid: Long): ResultModel<CityWeatherResponseEntity> {
+        return ResultModel.Success(WeatherMock.provideSuccessfulResponse())
     }
     
 }
@@ -22,10 +16,10 @@ object WeatherMock {
     
     const val weather_4118_success = "json/weather_4118_success.json"
 
-    fun provideSuccessfulResponse(): CityWeatherResponse {
+    fun provideSuccessfulResponse(): CityWeatherResponseEntity {
         return DataProviderFromResourceFolderUtils.getModelFromFileResource(
             weather_4118_success,
-            CityWeatherResponse::class.java
+            CityWeatherResponseEntity::class.java
         )
     }
 }
