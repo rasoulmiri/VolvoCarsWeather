@@ -11,6 +11,7 @@ dependencies {
     implementation(project(Modules.Core.base))
     implementation(project(Modules.Core.uikit))
     implementation(project(Modules.Core.repository))
+    implementation(project(Modules.Core.theme))
 
     implementationGroup(DependenciesManager.koin.all)
     implementationGroup(DependenciesManager.coroutines.all)

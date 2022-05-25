@@ -36,20 +36,20 @@ data class ConsolidatedWeatherEntity (
     @SerializedName("applicable_date")
     val applicableDate: String? = null,
     @SerializedName("min_temp")
-    val minTemp: String? = null,
+    val minTemp: Double? = null,
     @SerializedName("max_temp")
-    val maxTemp: String? = null,
+    val maxTemp: Double? = null,
     @SerializedName("the_temp")
-    val theTemp: String? = null,
+    val theTemp: Double? = null,
     @SerializedName("wind_speed")
-    val windSpeed: String? = null,
+    val windSpeed: Double? = null,
     @SerializedName("wind_direction")
-    val windDirection: String? = null,
+    val windDirection: Double? = null,
     @SerializedName("air_pressure")
-    val airPressure: String? = null,
+    val airPressure: Double? = null,
     val humidity: Long? = null,
-    val visibility: String? = null,
-    val predictability: String? = null
+    val visibility: Double? = null,
+    val predictability: Long? = null
 )
 
 @Keep
@@ -68,5 +68,5 @@ data class SourceEntity (
     val slug: String? = null,
     val url: String? = null,
     @SerializedName("crawl_rate")
-    val crawlRate: String? = null
+    val crawlRate: Long? = null
 )
