@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.volvocars.weather.main.R
 import com.volvocars.weather.main.presenter.views.card.WeatherCardModel
 import com.volvocars.weather.main.presenter.views.card.WeatherCardState
-import com.volvocars.weather.main.presenter.views.card.WeatherCard
+import com.volvocars.weather.main.presenter.views.card.WeatherCardView
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -41,7 +41,7 @@ fun WeathersListView(weathersItems: List<WeatherCardModel>) {
             modifier = Modifier.fillMaxWidth()
         ) {
             itemsIndexed(weathersItems) { _, item ->
-                WeatherCard(item)
+                WeatherCardView(item)
             }
         }
     }

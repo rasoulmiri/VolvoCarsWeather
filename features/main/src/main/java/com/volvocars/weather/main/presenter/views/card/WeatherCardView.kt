@@ -9,13 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.volvocars.weather.main.R
-import com.volvocars.weather.main.presenter.views.card.WeatherCardModel
-import com.volvocars.weather.main.presenter.views.card.WeatherCardState
 import com.volvocars.weather.theme.VolvoCarsTemplateTheme
 
 @Composable
-fun WeatherCard(itemData: WeatherCardModel) {
+fun WeatherCardView(itemData: WeatherCardModel) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -36,29 +35,27 @@ fun WeatherCard(itemData: WeatherCardModel) {
                         .fillMaxWidth(),
                     color = MaterialTheme.colors.onSurface,
                 )
-                val temperature = itemData.data?.theTemp?.toInt()
-                Text(
-                    text = temperature?.toString() ?: kotlin.run { "..." },
-                    style = MaterialTheme.typography.body2,
-                    modifier = Modifier.padding(bottom = 4.dp))
+
+
 
                 when (itemData.state) {
                     WeatherCardState.Loading -> CircularProgressIndicator()
-                    WeatherCardState.Success -> {}
+                    WeatherCardState.Success -> {
+                        val temperature = itemData.data?.theTemp?.toInt()
+                        Text(text = temperature?.toString() ?: kotlin.run { "..." },
+                            style = MaterialTheme.typography.body2,
+                            modifier = Modifier.padding(bottom = 4.dp))
+                    }
                     WeatherCardState.Failed -> Button(onClick = {
                         // TODO add retry logic
                     }) {
                         Text(text = stringResource(R.string.retry))
                     }
                 }
-//                Image(
-//                    painter = painterResource(id =),
-//                    contentDescription = null,
-//                    modifier = Modifier
-//                        .size(60.dp)
-//                        .padding(8.dp),
-//                    contentScale = ContentScale.Fit,
-//                )
+                AsyncImage(
+                    model = itemData.image,
+                    contentDescription = null
+                )
             }
         }
 
@@ -70,7 +67,7 @@ fun WeatherCard(itemData: WeatherCardModel) {
 @Composable
 fun PlanetCardPreview() {
     VolvoCarsTemplateTheme {
-        WeatherCard(  WeatherCardModel("Berlin", 1001, WeatherCardState.Loading, null))
+        WeatherCardView(WeatherCardModel("Berlin", 1001, WeatherCardState.Loading, null))
     }
 }
 
@@ -79,7 +76,7 @@ fun PlanetCardPreview() {
 @Composable
 fun PlanetCard1Preview() {
     VolvoCarsTemplateTheme {
-        WeatherCard(  WeatherCardModel("Berlin", 1001, WeatherCardState.Loading, null))
+        WeatherCardView(WeatherCardModel("Berlin", 1001, WeatherCardState.Loading, null))
     }
 }
 
@@ -88,6 +85,6 @@ fun PlanetCard1Preview() {
 @Composable
 fun PlanetCard2Preview() {
     VolvoCarsTemplateTheme {
-        WeatherCard(  WeatherCardModel("Berlin", 1001, WeatherCardState.Loading, null))
+        WeatherCardView(WeatherCardModel("Berlin", 1001, WeatherCardState.Loading, null))
     }
 }

@@ -26,7 +26,7 @@ class TomorrowWeatherCitiesUseCase(
         return when (val result = tomorrowWeatherUseCase.executeAsync(city.woeid)) {
             is ResultModel.Success<*> -> {
                 retryForError = 0
-                TomorrowWeatherCitiesResponseModel(city, result.value as ConsolidatedWeatherModel)
+                TomorrowWeatherCitiesResponseModel(city, result.value as? ConsolidatedWeatherModel)
             }
             is ResultModel.Error -> {
                 if (retryForError < 3) {

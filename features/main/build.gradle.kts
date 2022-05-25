@@ -16,6 +16,7 @@ dependencies {
     implementationGroup(DependenciesManager.koin.all)
     implementationGroup(DependenciesManager.coroutines.all)
     implementationGroup(DependenciesManager.retrofit.all)
+    implementation(DependenciesManager.coil.getCoil())
 
     testImplementationGroup(DependenciesManager.coroutines.test)
     testImplementationGroup(DependenciesManager.jUnit.all)

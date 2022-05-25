@@ -6,6 +6,7 @@ data class WeatherCardModel(
     val name: String,
     val woeid: Long,
     var state: WeatherCardState,
+    var image: String? = null,
     var data: ConsolidatedWeatherModel? = null,
 )
 

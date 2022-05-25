@@ -50,8 +50,7 @@ class TomorrowWeatherUseCase(
 
                 if (tomorrow.get(Calendar.YEAR) == day.get(Calendar.YEAR) &&
                     tomorrow.get(Calendar.DATE) == day.get(Calendar.DATE) &&
-                    tomorrow.get(Calendar.DAY_OF_MONTH) == day.get(Calendar.DAY_OF_MONTH) &&
-                    tomorrow.get(Calendar.DAY_OF_YEAR) == day.get(Calendar.DAY_OF_YEAR)
+                    tomorrow.get(Calendar.DAY_OF_MONTH) == day.get(Calendar.DAY_OF_MONTH)
                 ) {
                     tomorrowWeather = weather
                     return@forEach
