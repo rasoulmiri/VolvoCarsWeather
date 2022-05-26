@@ -12,6 +12,7 @@ object Modules {
     // Features
     object Feature {
         const val main = ":features:main"
+        const val details = ":features:details"
     }
 
 }

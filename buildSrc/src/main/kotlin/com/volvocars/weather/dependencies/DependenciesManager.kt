@@ -12,5 +12,7 @@ object DependenciesManager {
     val mockk: Mockk by lazy { Mockk() }
     val espresso: Espresso by lazy { Espresso() }
     val compose: Compose by lazy { Compose() }
+    val jUnit: JUnit by lazy { JUnit() }
+    val coil: Coil by lazy { Coil() }
 
 }

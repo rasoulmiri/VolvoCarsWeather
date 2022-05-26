@@ -16,6 +16,7 @@ dependencies {
 
     // Features
     implementation(project(Modules.Feature.main))
+    implementation(project(Modules.Feature.details))
 
     implementationGroup(DependenciesManager.androidX.general.all)
     implementationGroup(DependenciesManager.koin.all)

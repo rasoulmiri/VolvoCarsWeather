@@ -3,12 +3,11 @@ package com.volvocars.weather.dependencies.groups
 class Coil {
 
     private object Versions {
-        const val coil = "1.4.0"
+        const val coil = "2.1.0"
     }
-
     private object Dependencies {
         const val coil =
-            "io.coil-kt:coil-compose:${com.volvocars.weather.dependencies.groups.Coil.Versions.coil}"
+            "io.coil-kt:coil-compose:${Versions.coil}"
     }
 
     fun getCoil(): String {
