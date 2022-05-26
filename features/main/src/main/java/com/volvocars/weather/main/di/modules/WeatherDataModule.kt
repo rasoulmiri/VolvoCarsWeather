@@ -13,7 +13,7 @@ val weatherDataModule = module {
 
     factory<WeatherDataSource> { WeatherMockDataSourceImpl() }
     factory<WeatherRepository> { WeatherRepositoryImpl(get()) }
-    // TODO change this to remote source if the website was ready
+    // TODO MOCK : Change this to remote source if the website was ready
 //    factory<WeatherDataSource> { WeatherRemoteDataSourceImpl(get()) }
 
     factory { provideApiService(get()) }
