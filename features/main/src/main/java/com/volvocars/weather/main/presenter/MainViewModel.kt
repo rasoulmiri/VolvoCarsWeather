@@ -26,6 +26,9 @@ class MainViewModel(
     )
     val items: StateFlow<List<WeatherCardModel>> = _items.asStateFlow()
 
+    init {
+        getWeathers()
+    }
     fun getWeathers() {
 
         track {
@@ -44,7 +47,6 @@ class MainViewModel(
                             if (item.woeid == response?.city?.woeid) {
                                 item.data = response.weather
                                 item.state = WeatherCardState.Success
-
                                 item.image =
                                     if (item.data?.weatherStateAbbr?.isNotEmpty() == true) {
                                         "https://www.metaweather.com/static/img/weather/png/64/${item.data?.weatherStateAbbr}.png"

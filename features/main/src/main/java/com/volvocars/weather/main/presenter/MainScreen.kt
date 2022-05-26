@@ -15,8 +15,7 @@ fun MainScreen(navController: NavController) {
     val items by viewModel.items.collectAsState()
 
     Scaffold {
-        viewModel.getWeathers()
-        WeathersListView(items)
+        WeathersListView(items, navController)
     }
 }
 

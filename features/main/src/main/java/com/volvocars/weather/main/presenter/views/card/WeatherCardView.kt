@@ -1,6 +1,7 @@
 package com.volvocars.weather.main.presenter.views.card
 
 import android.content.res.Configuration
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -14,7 +15,7 @@ import com.volvocars.weather.main.R
 import com.volvocars.weather.theme.VolvoCarsTemplateTheme
 
 @Composable
-fun WeatherCardView(itemData: WeatherCardModel) {
+fun WeatherCardView(itemData: WeatherCardModel, onItemClickListener: ((WeatherCardModel) -> Unit)? = null) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -25,6 +26,9 @@ fun WeatherCardView(itemData: WeatherCardModel) {
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.clickable {
+                onItemClickListener?.invoke(itemData)
+            }
         ) {
             Column(Modifier.padding(8.dp)) {
                 Text(
@@ -35,8 +39,6 @@ fun WeatherCardView(itemData: WeatherCardModel) {
                         .fillMaxWidth(),
                     color = MaterialTheme.colors.onSurface,
                 )
-
-
 
                 when (itemData.state) {
                     WeatherCardState.Loading -> CircularProgressIndicator()
@@ -52,6 +54,7 @@ fun WeatherCardView(itemData: WeatherCardModel) {
                         Text(text = stringResource(R.string.retry))
                     }
                 }
+
                 AsyncImage(
                     model = itemData.image,
                     contentDescription = null

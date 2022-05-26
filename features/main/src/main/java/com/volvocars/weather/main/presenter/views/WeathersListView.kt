@@ -16,14 +16,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.volvocars.weather.main.R
 import com.volvocars.weather.main.presenter.views.card.WeatherCardModel
 import com.volvocars.weather.main.presenter.views.card.WeatherCardState
 import com.volvocars.weather.main.presenter.views.card.WeatherCardView
+import com.volvocars.weather.navigation.destinations.DetailsDestination
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun WeathersListView(weathersItems: List<WeatherCardModel>) {
+fun WeathersListView(weathersItems: List<WeatherCardModel>, navController: NavController?) {
 
     Scaffold(
         topBar = {
@@ -41,7 +43,13 @@ fun WeathersListView(weathersItems: List<WeatherCardModel>) {
             modifier = Modifier.fillMaxWidth()
         ) {
             itemsIndexed(weathersItems) { _, item ->
-                WeatherCardView(item)
+                WeatherCardView(item, onItemClickListener = { itemData ->
+                    navController?.navigate(DetailsDestination.createDetailsRoute(
+                        cityName = itemData.name,
+                        temperature = itemData.data?.theTemp?.toInt().toString(),
+                        temperatureMin = itemData.data?.minTemp?.toInt().toString(),
+                        temperatureMax = itemData.data?.maxTemp?.toInt().toString()))
+                })
             }
         }
     }
@@ -55,5 +63,5 @@ fun Preview() {
         WeatherCardModel("London", 1001, WeatherCardState.Loading, null),
         WeatherCardModel("Berlin", 1001, WeatherCardState.Loading, null),
         WeatherCardModel("London", 1001, WeatherCardState.Loading, null)
-    ))
+    ), null)
 }
