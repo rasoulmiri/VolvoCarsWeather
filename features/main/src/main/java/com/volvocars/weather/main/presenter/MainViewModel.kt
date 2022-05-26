@@ -34,7 +34,7 @@ class MainViewModel(
         }
     }
 
-    fun getWeathers() {
+    private fun getWeathers() {
 
         removeAllJob()
 
