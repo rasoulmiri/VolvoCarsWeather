@@ -21,6 +21,10 @@
         <entry key="../../../../../../layout/compose-model-1653561833846.xml" value="0.1425925925925926" />
         <entry key="../../../../../../layout/compose-model-1653566897281.xml" value="0.1" />
         <entry key="../../../../../../layout/compose-model-1653568776666.xml" value="0.1" />
+        <entry key="../../../../../../layout/compose-model-1653569702346.xml" value="0.625" />
+        <entry key="core/uikit/src/main/res/drawable/thermometer.xml" value="0.302" />
+        <entry key="core/uikit/src/main/res/drawable/thermometer_chevron_up.xml" value="0.302" />
+        <entry key="features/details/src/main/res/drawable/thermometer_chevron_down.xml" value="0.302" />
       </map>
     </option>
   </component>
