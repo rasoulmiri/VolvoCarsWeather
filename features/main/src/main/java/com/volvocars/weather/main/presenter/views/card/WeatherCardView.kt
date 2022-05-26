@@ -44,7 +44,7 @@ fun WeatherCardView(itemData: WeatherCardModel, onItemClickListener: ((WeatherCa
                     WeatherCardState.Success -> {
                         val temperature = itemData.data?.theTemp?.toInt()
                         Text(text = temperature?.toString() ?: kotlin.run { "..." },
-                            style = MaterialTheme.typography.body2,
+                            style = MaterialTheme.typography.h3,
                             modifier = Modifier.padding(bottom = 4.dp))
                     }
                     WeatherCardState.Failed -> Button(onClick = {
