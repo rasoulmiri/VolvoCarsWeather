@@ -1,4 +1,4 @@
-package com.volvocars.weather.navigation
+package com.volvocars.weather.application.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
@@ -9,13 +9,16 @@ import com.volvocars.weather.details.presenter.navigation.DetailsNavigationModel
 import com.volvocars.weather.main.presenter.MainScreen
 import com.volvocars.weather.navigation.destinations.DetailsDestination
 import com.volvocars.weather.navigation.destinations.MainDestination
+import org.koin.androidx.compose.getViewModel
+
 
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = MainDestination.route) {
-        composable(route = MainDestination.route, MainDestination.arguments) {
-            MainScreen(navController = navController)
+        composable(route = MainDestination.route) {
+            MainScreen(navController = navController, getViewModel())
+
         }
         composable(route = DetailsDestination.route,
             arguments = DetailsDestination.arguments) { entry ->

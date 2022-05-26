@@ -39,7 +39,6 @@ fun WeatherCardView(itemData: WeatherCardModel, onItemClickListener: ((WeatherCa
                         .fillMaxWidth(),
                     color = MaterialTheme.colors.onSurface,
                 )
-
                 when (itemData.state) {
                     WeatherCardState.Loading -> CircularProgressIndicator()
                     WeatherCardState.Success -> {

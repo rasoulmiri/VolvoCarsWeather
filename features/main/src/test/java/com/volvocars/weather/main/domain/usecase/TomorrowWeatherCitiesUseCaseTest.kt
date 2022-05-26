@@ -4,7 +4,6 @@ import com.volvocars.weather.dataprovider.WeatherDataProviderFromJson
 import com.volvocars.weather.main.domain.mapper.mapToModel
 import com.volvocars.weather.repository.ResultModel
 import io.mockk.coEvery
-import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.runBlocking
