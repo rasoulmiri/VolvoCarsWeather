@@ -1,6 +1,7 @@
 package com.volvocars.weather.application
 
 import androidx.multidex.MultiDexApplication
+import com.volvocars.weather.details.di.DetailsPageInjector
 import com.volvocars.weather.main.di.MainPageInjector
 import com.volvocars.weather.repository.di.RepositoryInjector
 import org.koin.android.ext.koin.androidContext
@@ -22,6 +23,7 @@ class ApplicationGlobal : MultiDexApplication() {
             androidLogger(Level.ERROR).androidContext(this@ApplicationGlobal)
                 .modules(RepositoryInjector.provideDependencies())
                 .modules(MainPageInjector.provideDependencies())
+                .modules(DetailsPageInjector.provideDependencies())
         }
     }
 

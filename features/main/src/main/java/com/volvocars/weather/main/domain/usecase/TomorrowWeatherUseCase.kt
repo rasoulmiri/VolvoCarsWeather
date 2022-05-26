@@ -3,7 +3,6 @@ package com.volvocars.weather.main.domain.usecase
 import com.volvocars.weather.base.usecase.AsyncSuspendUseCase
 import com.volvocars.weather.base.utils.date.DateConvertorUtils
 import com.volvocars.weather.base.utils.date.DateFormat.Companion.formatJustDate
-import com.volvocars.weather.base.utils.date.DateFormat.Companion.formatZIndex
 import com.volvocars.weather.main.data.entity.ConsolidatedWeatherEntity
 import com.volvocars.weather.main.domain.WeatherRepository
 import com.volvocars.weather.main.domain.mapper.mapToModel

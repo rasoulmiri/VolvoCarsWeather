@@ -1,27 +1,26 @@
 import com.volvocars.weather.extenstion.implementationGroup
+import com.volvocars.weather.extenstion.testImplementationGroup
 
 plugins {
-    id(Plugins.volvocarsApplicationPlugin)
+    id(Plugins.volvocarsLibraryPlugin)
     id(Plugins.volvocarsComposePlugin)
 }
 
 dependencies {
 
-    // Modules
     implementation(project(Modules.Core.base))
     implementation(project(Modules.Core.uikit))
     implementation(project(Modules.Core.repository))
-    implementation(project(Modules.Core.navigation))
     implementation(project(Modules.Core.theme))
 
-    // Features
-    implementation(project(Modules.Feature.main))
-    implementation(project(Modules.Feature.details))
-
-    implementationGroup(DependenciesManager.androidX.general.all)
     implementationGroup(DependenciesManager.koin.all)
     implementationGroup(DependenciesManager.coroutines.all)
     implementationGroup(DependenciesManager.retrofit.all)
-    implementationGroup(DependenciesManager.androidX.navigation.all)
+    implementation(DependenciesManager.coil.getCoil())
+
+    testImplementationGroup(DependenciesManager.coroutines.test)
+    testImplementationGroup(DependenciesManager.jUnit.all)
+    testImplementationGroup(DependenciesManager.androidX.test.all)
+    testImplementationGroup(DependenciesManager.mockk.all)
 
 }

@@ -1,7 +1,7 @@
 package com.volvocars.weather.dataprovider
 
-import com.volvocars.weather.main.data.entity.CityWeatherResponseEntity
 import com.volvocars.weather.base.utils.DataProviderFromResourceFolderUtils
+import com.volvocars.weather.main.data.entity.CityWeatherResponseEntity
 
 
 class WeatherDataProviderFromJson {

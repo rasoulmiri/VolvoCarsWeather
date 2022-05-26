@@ -1,7 +1,7 @@
 package com.volvocars.weather.main.data
 
-import com.volvocars.weather.main.data.entity.CityWeatherResponseEntity
 import com.volvocars.weather.main.data.datasource.WeatherDataSource
+import com.volvocars.weather.main.data.entity.CityWeatherResponseEntity
 import com.volvocars.weather.main.domain.WeatherRepository
 import com.volvocars.weather.repository.ResultModel
 
