@@ -17,12 +17,12 @@ class MainViewModel(
     private val tomorrowWeatherCitiesUseCase: TomorrowWeatherCitiesUseCase,
 ) : BaseViewModel() {
 
-    // TODO we need to change this after website was ready
     private val _items = MutableStateFlow<List<WeatherCardModel>>(arrayListOf())
     val items: StateFlow<List<WeatherCardModel>> = _items.asStateFlow()
 
     init {
         viewModelScope.launch {
+            // TODO MOCK : We need to change this after website was ready
             _items.emit(arrayListOf(
                 WeatherCardModel("Gothenburg", 100L, WeatherCardState.Loading),
                 WeatherCardModel("Stockholm", 101L, WeatherCardState.Loading),
@@ -56,7 +56,9 @@ class MainViewModel(
                                 item.state = WeatherCardState.Success
                                 item.image =
                                     if (item.data?.weatherStateAbbr?.isNotEmpty() == true) {
-                                        "https://www.metaweather.com/static/img/weather/png/64/${item.data?.weatherStateAbbr}.png"
+                                        // TODO MOCK : We need to change this after website was ready
+                                        // "https://www.metaweather.com/static/img/weather/png/64/${item.data?.weatherStateAbbr}.png"
+                                        "https://cdn-icons-png.flaticon.com/512/869/869869.png"
                                     } else {
                                         null
                                     }
